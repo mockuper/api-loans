@@ -10,9 +10,20 @@ com.loans.online.android
 ## app process
 
 <!---
+participant mobile as m
+participant server as s
 
+note over m,s: download regestry form
+m->>+s: GET /form
+s->>-m: data[field]
+note over m,s: post regestry form
+m->>+s: POST /user
+s->>-m: token
+note over m,s: take loans
+m->>+s: GET /loans
+s->>-m: data[loan]
 -->
-![sheme](dfsdf)
+![sheme](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=cGFydGljaXBhbnQgbW9iaWxlIGFzIG0KAAwMc2VydmVyIGFzIHMKCm5vdGUgb3ZlciBtLHM6IGRvd25sb2FkIHJlZ2VzdHJ5IGZvcm0KbS0-PitzOiBHRVQgLwANBXMtPj4tbTogZGF0YVtmaWVsZF0APBBwb3N0ADEXUE9TVCAvdXNlcgBACXRva2VuAIB_EHRha2UgbG9hbnMAdQ4ADQYAdw1sb2FuXQ&s=magazine)
 
 ## model user
 
