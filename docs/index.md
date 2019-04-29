@@ -13,21 +13,68 @@ com.loans.online.android
 participant mobile as m
 participant server as s
 
-note over m,s: download regestry form
-m->>+s: GET /form
-s->>-m: data[field]
-note over m,s: post regestry form
-m->>+s: POST /user
-s->>-m: token
-note over m,s: take loans
-m->>+s: GET /loans
-s->>-m: data[loan]
+opt registration
+    m->>+s: GET /form
+    
+    s->>-m: data[field]
+    m->>+s: POST /form
+    s->>-m: token
+end
+opt data update
+    m->>+s: GET /loans
+    s->>-m: data[loan]
+end
 -->
-![sheme](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=cGFydGljaXBhbnQgbW9iaWxlIGFzIG0KAAwMc2VydmVyIGFzIHMKCm5vdGUgb3ZlciBtLHM6IGRvd25sb2FkIHJlZ2VzdHJ5IGZvcm0KbS0-PitzOiBHRVQgLwANBXMtPj4tbTogZGF0YVtmaWVsZF0APBBwb3N0ADEXUE9TVCAvdXNlcgBACXRva2VuAIB_EHRha2UgbG9hbnMAdQ4ADQYAdw1sb2FuXQ&s=magazine)
+
+![sheme](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=cGFydGljaXBhbnQgbW9iaWxlIGFzIG0KAAwMc2VydmVyIGFzIHMKCm9wdCByZWdpc3RyYXRpb24KICAgIG0tPj4rczogR0VUIC9mb3JtABEFABYFcy0-Pi1tOiBkYXRhW2ZpZWxkXQAmDVBPUwAoDAAnCHRva2VuCmVuZABsBWRhdGEgdXBkYXRlAF4SbG9hbnMAWhJsb2FuXQplbmQ&s=magazine)
 
 ## model user
 
-> POST /user
+> GET /form
+>
+> - X-Country-Code: id
+> - X-Security-Token: 67753e82-975f-49ca-af64-65e0e774c119
+> - X-Device-Id: 65e0e774c119
+
+```json
+{
+  "data": [
+    {
+      "type": "name",
+      "label": "Your name",
+      "mask": "[A…]",
+      "regexp": "^[\\w .'-]+$"
+    }
+  ]
+}
+```
+
+| key         | value type           | description                                                   |
+| ----------- | -------------------- | ------------------------------------------------------------- |
+| data.type   | {name, phone, email} | тип поля для управление интерфейсом                           |
+| data.mask   | string               | [RMR Mask](https://github.com/RedMadRobot/input-mask-android) |
+| data.regexp | string               | вторичная валидация после маски на вменяемость                |
+
+В интерфейсе валидность отображается иконочкой, если пройдена валидация по mask и regexp то зеленая галочка, иначе красная. Если поле станет необязательным к заполнению, то это можно решить через комбинацию полей mask и regexp
+
+=>200
+
+```json
+{
+  "token": "67753e82-975f-49ca-af64-65e0e774c119"
+}
+```
+
+=>404
+
+```json
+{
+  "code": 39203,
+  "message": "Text"
+}
+```
+
+> POST /form
 >
 > - X-Country-Code: id
 > - X-Security-Token: 67753e82-975f-49ca-af64-65e0e774c119
@@ -98,9 +145,9 @@ s->>-m: data[loan]
 }
 ```
 
-| key       | value type | description                                               |
-| --------- | ---------- | --------------------------------------------------------- |
-| term.type | {d,m,y}    | тип кредита для отображения d - дни, m - месяцы, y - годы |
+| key            | value type | description                                               |
+| -------------- | ---------- | --------------------------------------------------------- |
+| data.term.type | {d,m,y}    | тип кредита для отображения d - дни, m - месяцы, y - годы |
 
 =>401
 
