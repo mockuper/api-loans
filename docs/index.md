@@ -12,7 +12,7 @@ com.loans.online.android
 > POST /user
 >
 > - X-Country-Code: id
-> - X-Security-Token: 67753e82-975f-49ca-af64-65e0e774c119-1e5l27i
+> - X-Security-Token: 67753e82-975f-49ca-af64-65e0e774c119
 > - X-Device-Id: 65e0e774c119
 
 ```json
@@ -31,7 +31,7 @@ com.loans.online.android
 
 ```json
 {
-  "token": "67753e82-975f-49ca-af64-65e0e774c119-1e5l27i"
+  "token": "67753e82-975f-49ca-af64-65e0e774c119"
 }
 ```
 
@@ -46,12 +46,12 @@ com.loans.online.android
 
 ## model loan
 
-> GET /loans?guid=67753e82-975f-49ca-af64-65e0e774c119-1e5l27i
+> GET /loans
 >
 > - X-Country-Code: id
-> - X-Security-Token: 67753e82-975f-49ca-af64-65e0e774c119-1e5l27i
+> - X-Security-Token: 654b370b-6219-44c7-9c23-38bf3e820927
 > - X-Device-Id: 65e0e774c119
-> - X-Auth-Token: 67753e82-975f-49ca-af64-65e0e774c119-1e5l27i
+> - X-Auth-Token: 67753e82-975f-49ca-af64-65e0e774c119
 
 =>200
 
@@ -69,7 +69,7 @@ com.loans.online.android
       "term": {
         "min": 1,
         "max": 99,
-        "type": "d" // var{d,m,y}
+        "type": "d"
       },
       "discount": true,
       "description": "Text",
@@ -79,6 +79,10 @@ com.loans.online.android
   ]
 }
 ```
+
+| key       | value type | description                                               |
+| --------- | ---------- | --------------------------------------------------------- |
+| term.type | {d,m,y}    | тип кредита для отображения d - дни, m - месяцы, y - годы |
 
 =>401
 
