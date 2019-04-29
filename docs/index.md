@@ -14,8 +14,6 @@ participant mobile as m
 participant server as s
 
 opt registration
-    m->>+s: GET /form
-    s->>-m: data[field]
     m->>+s: POST /form
     s->>-m: token
 end
@@ -25,55 +23,9 @@ opt data update
 end
 -->
 
-![sheme](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=cGFydGljaXBhbnQgbW9iaWxlIGFzIG0KAAwMc2VydmVyIGFzIHMKCm9wdCByZWdpc3RyYXRpb24KICAgIG0tPj4rczogR0VUIC9mb3JtABEFABYFcy0-Pi1tOiBkYXRhW2ZpZWxkXQAmDVBPUwAoDAAnCHRva2VuCmVuZABsBWRhdGEgdXBkYXRlAF4SbG9hbnMAWhJsb2FuXQplbmQ&s=magazine)
+![sheme](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=cGFydGljaXBhbnQgbW9iaWxlIGFzIG0KAAwMc2VydmVyIGFzIHMKCm9wdCByZWdpc3RyYXRpb24KICAgIG0tPj4rczogUE9TVCAvZm9ybQASBXMtPj4tbTogdG9rZW4KZW5kADkFZGF0YSB1cGRhdGUAMA1HRVQgL2xvYW5zADANZGF0YVtsb2FuXQplbmQ&s=magazine)
 
 ## model user
-
-> GET /form
->
-> - X-Country-Code: id
-> - X-Security-Token: 67753e82-975f-49ca-af64-65e0e774c119
-> - X-Device-Id: 65e0e774c119
-
-```json
-{
-  "data": [
-    {
-      "type": "name",
-      "label": "Your name",
-      "mask": "[A…]",
-      "regexp": "^[\\w .'-]+$"
-    }
-  ]
-}
-```
-
-=>200
-
-```json
-{
-  "token": "67753e82-975f-49ca-af64-65e0e774c119"
-}
-```
-
-=>404
-
-```json
-{
-  "code": 39203,
-  "message": "Text"
-}
-```
-
-| key            | value type           | description                                                   |
-| -------------- | -------------------- | ------------------------------------------------------------- |
-| data[x].type   | {name, phone, email} | тип поля для управление интерфейсом                           |
-| data[x].mask   | string               | [RMR Mask](https://github.com/RedMadRobot/input-mask-android) |
-| data[x].regexp | string               | вторичная валидация после маски на вменяемость                |
-
-В интерфейсе валидность отображается иконочкой, если пройдена валидация по mask и regexp то зеленая галочка, иначе красная. Если поле станет необязательным к заполнению, то это можно решить через комбинацию полей mask и regexp
-
----
 
 > POST /form
 >
@@ -164,8 +116,11 @@ end
 }
 ```
 
-| key               | value type | description                                               |
-| ----------------- | ---------- | --------------------------------------------------------- |
-| data[x].term.type | {d,m,y}    | тип кредита для отображения d - дни, m - месяцы, y - годы |
+| key                | value   | description                                               |
+| ------------------ | ------- | --------------------------------------------------------- |
+| data[x].term.type  | {d,m,y} | тип кредита для отображения d - дни, m - месяцы, y - годы |
+| data[x].action_url | url     | урл на открытие webView                                   |
 
 Ошибка 401 предусматривает релогин принудительный, в частности может понадобится для попытки юзера повторить логин через некоторое время для обновления информации в базе и при маркетинговой рассылке с проверкой гипотиз
+
+!!! нужно будет реализовать схему с [.well-known/assetlinks.json](https://developer.android.com/training/app-links/verify-site-associations) на лэндинге кэшвагона или встроить в сайты кэшвагона
