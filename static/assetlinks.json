@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.loans.online.android",
+            "sha256_cert_fingerprints": [
+                "SHA256: F0:A6:43:58:62:E0:CB:5A:71:FD:5F:C0:C9:18:56:6D:D7:89:A1:CC:67:7E:C2:2A:91:C1:11:18:90:C3:F1:80"
+            ]
+        }
+    }
+]
