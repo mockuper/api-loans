@@ -52,6 +52,22 @@ def after_request(response):
 @app.route('/form', methods=['POST'])
 def request_form():
 
+    did = request.headers.get('X-Device-Id')
+    form = request.get_json()
+
+    name = form.get('name')
+    phone = form.get('phone')
+    email = form.get('email')
+    utm_s = form.get('utm').get('utm_source')
+    utm_m = form.get('utm').get('utm_medium')
+
+    created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    sql = f"""
+        INSERT INTO users (name, phone, email, device_id, created_at, utm_source, utm_medium) 
+        VALUES ('{name}', '{phone}', '{email}', '{did}', '{created_at}', '{utm_s}', '{utm_m}')
+        """
+    DBFetcher().execute(sql)
+
     success = {
         "token": guid().hex
     }
@@ -67,27 +83,11 @@ def request_form():
 @app.route('/loans', methods=['GET'])
 def request_loans():
 
+    sql = "SELECT * FROM loans"
+    data = DBFetcher().fetch(sql)
+
     success = {
-        "data": [
-            {
-                "name": "Text",
-                "icon_url": "https://via.placeholder.com/200/0000FF/FFFFFFFF",
-                "amout": {
-                    "currency": "USD",
-                    "min": 1,
-                    "max": 9999
-                },
-                "term": {
-                    "min": 1,
-                    "max": 99,
-                    "type": "d"
-                },
-                "discount": True,
-                "description": "Text",
-                "stars": 4.2,
-                "action_url": "http://"
-            }
-        ]
+        "data": data
     }
 
     error = {

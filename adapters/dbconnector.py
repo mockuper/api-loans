@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import urllib.parse as urlparse
 
 import psycopg2
 import psycopg2.extras
@@ -13,11 +14,13 @@ class DBFetcher(object):
     def __init__(self):
         super(DBFetcher, self).__init__()
 
+        url = urlparse.urlparse(os.environ['DATABASE_URL'])
+
         self._db_config = {
-            'host': os.environ.get('DATABASE_HOST', None),
-            'dbname': os.environ.get('DATABASE_NAME', None),
-            'user': os.environ.get('DATABASE_USER', None),
-            'password': os.environ.get('DATABASE_PASSWORD', None)
+            'host': url.hostname,
+            'dbname': url.path[1:],
+            'user': url.username,
+            'password': url.password
         }
 
         self._db_connect = psycopg2.connect(**self._db_config)
