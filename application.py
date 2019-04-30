@@ -5,12 +5,12 @@
 import os
 from uuid import uuid4 as guid
 
-from random import choice, randint
+from random import choice
 from time import sleep
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from flask import Flask
-from flask import request, Response, redirect
+from flask import request, Response
 from flask import render_template, send_from_directory
 from flask import jsonify as json
 
@@ -68,16 +68,16 @@ def request_form():
         """
     DBFetcher().execute(sql)
 
-    success = {
-        "token": guid().hex
-    }
+    success = json(
+        token = guid().hex
+    ), 200
 
-    error = {
-        "code": 39203,
-        "message": "Text"
-    }
+    error404 = json(
+        code = 404,
+        message = "Проблемы сервака"
+    ), 404
 
-    return json(success)
+    return choice([success, success, success, error404])
 
 
 @app.route('/loans', methods=['GET'])
@@ -86,16 +86,21 @@ def request_loans():
     sql = "SELECT * FROM loans"
     data = DBFetcher().fetch(sql)
 
-    success = {
-        "data": data
-    }
+    success = json(
+        data = data
+    ), 200
 
-    error = {
-        "code": 39203,
-        "message": "Text"
-    }
+    error404 = json(
+        code = 404,
+        message = "Проблемы сервака"
+    ), 404
 
-    return json(success)
+    error401 = json(
+        code = 401,
+        message = "Вылогин"
+    ), 401
+
+    return choice([success, success, error404, error401])
 
 
 # -----------------------------------------------------------------------
