@@ -5,7 +5,7 @@
 import os
 from uuid import uuid4 as guid
 
-from random import choice
+from random import choice, randint
 from time import sleep
 from datetime import datetime
 
@@ -87,7 +87,7 @@ def request_loans():
     data = DBFetcher().fetch(sql)
 
     success = json(
-        data = data
+        data = data[1:randint(1, len(data))+1]
     ), 200
 
     error404 = json(
