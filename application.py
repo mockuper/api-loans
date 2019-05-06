@@ -87,7 +87,7 @@ def request_loans():
     data = DBFetcher().fetch(sql)
 
     success = json(
-        data = data[1:randint(1, len(data))+1]
+        data = data[0:randint(1, len(data))+1]
     ), 200
 
     error404 = json(
