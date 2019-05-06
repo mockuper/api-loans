@@ -100,7 +100,7 @@ def request_loans():
         message = "Вылогин"
     ), 401
 
-    return choice([success, success, error404, error401])
+    return choice([success, success, success, error404, error401])
 
 
 # -----------------------------------------------------------------------
@@ -110,7 +110,8 @@ def index(option=None):
 
     static = {
         'favicon.ico': 'image/vnd.microsoft.icon',
-        '.well-known/assetlinks.json': 'application/json'
+        '.well-known/assetlinks.json': 'application/json',
+        'cashwagon.png': 'image/png'
     }
 
     if static.get(option) is not None:
