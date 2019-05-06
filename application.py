@@ -83,7 +83,7 @@ def request_form():
 @app.route('/loans', methods=['GET'])
 def request_loans():
 
-    sql = "SELECT * FROM loans"
+    sql = "SELECT * FROM loans ORDER BY id ASC"
     data = DBFetcher().fetch(sql)
 
     success = json(
