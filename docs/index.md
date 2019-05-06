@@ -79,7 +79,7 @@ end
     {
       "name": "Text",
       "icon_url": "http://",
-      "amout": {
+      "amount": {
         "currency": "USD",
         "min": 1,
         "max": 9999
