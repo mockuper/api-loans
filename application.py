@@ -100,7 +100,7 @@ def request_loans():
         message = "Вылогин"
     ), 401
 
-    return choice([success, success, success, error404, error401])
+    return choice([success, success, success, success, error404, error401])
 
 
 # -----------------------------------------------------------------------
