@@ -113,7 +113,8 @@ def index(option=None):
     static = {
         'favicon.ico': 'image/vnd.microsoft.icon',
         'assetlinks.json': 'application/text',
-        'cashwagon.png': 'image/png'
+        'cashwagon.png': 'image/png',
+        'kreditpintar.png': 'image/png'
     }
 
     option = option.split('/')[-1]
