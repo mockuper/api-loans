@@ -105,9 +105,9 @@ def request_loans():
 
 # -----------------------------------------------------------------------
 
-@app.route('/<option>')
+@app.route('/<option>', defaults={'path': ''})
 @app.route('/<path:path>/<option>')
-def index(option=None):
+def index(path=None, option=None):
 
     static = {
         'favicon.ico': 'image/vnd.microsoft.icon',
