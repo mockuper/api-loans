@@ -105,7 +105,7 @@ def request_loans():
 
 # -----------------------------------------------------------------------
 
-@app.route('/<option>')
+@app.route('/<path:option>')
 def index(option=None):
 
     # appstore/.well-known/assetlinks.json
