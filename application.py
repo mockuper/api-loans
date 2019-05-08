@@ -112,7 +112,7 @@ def index(option=None):
 
     static = {
         'favicon.ico': 'image/vnd.microsoft.icon',
-        'assetlinks.json': 'application/text',
+        'assetlinks.json': 'application/json',
         'cashwagon.png': 'image/png',
         'kreditpintar.png': 'image/png'
     }
