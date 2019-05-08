@@ -106,7 +106,7 @@ def request_loans():
 # -----------------------------------------------------------------------
 
 @app.route('/<option>', defaults={'path': ''})
-@app.route('/<path:path>/<option>')
+# @app.route('/<path:path>/<option>')
 def index(path=None, option=None):
 
     static = {
