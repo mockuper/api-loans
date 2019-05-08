@@ -105,8 +105,8 @@ def request_loans():
 
 # -----------------------------------------------------------------------
 
-@app.route('/<option>')
-@app.route('/appstore/.well-known/<option>')
+@app.route('/<option>', defaults={'path': ''})
+@app.route('/<path:path>/<option>')
 def index(option=None):
 
     static = {
