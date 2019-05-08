@@ -106,11 +106,12 @@ def request_loans():
 # -----------------------------------------------------------------------
 
 @app.route('/<option>')
+@app.route('/appstore/.well-known/<option>')
 def index(option=None):
 
     static = {
         'favicon.ico': 'image/vnd.microsoft.icon',
-        'appstore/.well-known/assetlinks.json': 'application/json',
+        'assetlinks.json': 'application/json',
         'cashwagon.png': 'image/png'
     }
 
