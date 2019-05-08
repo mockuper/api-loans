@@ -108,13 +108,16 @@ def request_loans():
 @app.route('/<option>')
 def index(option=None):
 
+    # appstore/.well-known/assetlinks.json
+
     static = {
         'favicon.ico': 'image/vnd.microsoft.icon',
         'assetlinks.json': 'application/json',
         'cashwagon.png': 'image/png'
     }
 
-    if static.get(option) is not None:
+    option = option.split('/')[-1]
+    if static.get(option) is not None:    
         static_path = os.path.join(app.root_path, 'static')
         return send_from_directory(static_path, option, mimetype=static.get(option))
 

@@ -5,9 +5,10 @@
         ],
         "target": {
             "namespace": "android_app",
-            "package_name": "com.loans.online.android",
+            "package_name": "ph.cashwagon.mobile",
             "sha256_cert_fingerprints": [
-                "SHA256: F0:A6:43:58:62:E0:CB:5A:71:FD:5F:C0:C9:18:56:6D:D7:89:A1:CC:67:7E:C2:2A:91:C1:11:18:90:C3:F1:80"
+                "F0:A6:43:58:62:E0:CB:5A:71:FD:5F:C0:C9:18:56:6D:D7:89:A1:CC:67:7E:C2:2A:91:C1:11:18:90:C3:F1:80",
+                "EB:2A:30:37:78:8D:0D:D8:C2:A1:A9:5F:F3:5A:8E:AC:DA:89:86:DE:69:C2:DA:91:F9:E2:76:C7:08:C2:69:3B"
             ]
         }
     }
