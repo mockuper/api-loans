@@ -52,20 +52,23 @@ def after_request(response):
 @app.route('/form', methods=['POST'])
 def request_form():
 
-    did = request.headers.get('X-Device-Id')
+    header = request.headers
     form = request.get_json()
 
-    name = form.get('name')
-    phone = form.get('phone')
-    email = form.get('email')
-    utm_s = form.get('utm').get('utm_source')
-    utm_m = form.get('utm').get('utm_medium')
+    user = dict(
+        name = form.get('name'),
+        phone = form.get('phone'),
+        email = form.get('email'),
+        device_id = header.get('X-Device-Id'),
+        utm_source = form.get('utm').get('utm_source'),
+        utm_medium = form.get('utm').get('utm_medium'),
+        created_at = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    )
 
-    created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    sql = f"""
-        INSERT INTO users (name, phone, email, device_id, created_at, utm_source, utm_medium) 
-        VALUES ('{name}', '{phone}', '{email}', '{did}', '{created_at}', '{utm_s}', '{utm_m}')
-        """
+    keys = user.keys()
+    values = list(map(lambda k: user[k] ,keys))
+    values_str = "\'" + "\', \'".join(values) + "\'"
+    sql = f"INSERT INTO users ({', '.join(keys)}) VALUES ({values_str})"
     DBFetcher().execute(sql)
 
     success = json(
@@ -100,7 +103,7 @@ def request_loans():
         message = "Вылогин"
     ), 401
 
-    return choice([success, success, success, success, error404])
+    return choice([success, success, success, success, error404, error401])
 
 
 # -----------------------------------------------------------------------
