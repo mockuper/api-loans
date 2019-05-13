@@ -60,10 +60,18 @@ def request_form():
         phone = form.get('phone'),
         email = form.get('email'),
         device_id = header.get('X-Device-Id'),
-        utm_source = form.get('utm').get('utm_source'),
-        utm_medium = form.get('utm').get('utm_medium'),
         created_at = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     )
+
+    utm_source = form.get('utm').get('utm_source')
+    utm_medium = form.get('utm').get('utm_medium')
+
+    if utm_source:
+        user['utm_source'] = utm_source
+
+    if utm_medium:
+        user['utm_medium'] = utm_medium
+
 
     keys = user.keys()
     values = list(map(lambda k: user[k] ,keys))
