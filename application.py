@@ -77,7 +77,7 @@ def request_form():
 
     error404 = json(
         code = 404,
-        message = "Проблемы сервака"
+        message = "Проблемы сервака с кодом 404. Для проверки накидываю еще текстик"
     ), 404
 
     return choice([success, success, success, error404])
@@ -95,12 +95,12 @@ def request_loans():
 
     error404 = json(
         code = 404,
-        message = "Проблемы сервака"
+        message = "Проблемы сервака с кодом 404. Для проверки накидываю еще текстик"
     ), 404
 
     error401 = json(
         code = 401,
-        message = "Вылогин"
+        message = "Вылогин по коду 401. Для проверки еще текстик"
     ), 401
 
     return choice([success, success, success, success, error404, error401])
