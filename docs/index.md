@@ -1,13 +1,25 @@
 # loans online
 
-- EN = Loans Online
-- ID = Pinjaman Online
+Mobile App
+- [bundle](#bundle)
+- [process](#process)
+- [user model](#user)
+- [loan model](#loan)
+- [.well-known](#well-known)
+- [privacy policy](#privacy)
 
-## app bundle
+Server
+- [Заголовки](#Headers)
+- [Заголовки](#Headers)
+- [Заголовки](#Headers)
+
+---
+
+## bundle
 
 com.loans.online.android
 
-## app process
+## process
 
 <!---
 participant mobile as m
@@ -25,7 +37,7 @@ end
 
 ![sheme](https://www.websequencediagrams.com/cgi-bin/cdraw?lz=cGFydGljaXBhbnQgbW9iaWxlIGFzIG0KAAwMc2VydmVyIGFzIHMKCm9wdCByZWdpc3RyYXRpb24KICAgIG0tPj4rczogUE9TVCAvZm9ybQASBXMtPj4tbTogdG9rZW4KZW5kADkFZGF0YSB1cGRhdGUAMA1HRVQgL2xvYW5zADANZGF0YVtsb2FuXQplbmQ&s=magazine)
 
-## model user
+## user
 
 > POST /form
 >
@@ -62,7 +74,7 @@ end
 }
 ```
 
-## model loan
+## loan
 
 > GET /loans
 >
@@ -123,4 +135,12 @@ end
 
 Ошибка 401 предусматривает релогин принудительный, в частности может понадобится для попытки юзера повторить логин через некоторое время для обновления информации в базе и при маркетинговой рассылке с проверкой гипотиз
 
+## well-known
+
 !!! нужно будет реализовать схему с [.well-known/assetlinks.json](https://developer.android.com/training/app-links/verify-site-associations) на лэндинге кэшвагона или встроить в сайты кэшвагона
+
+## privacy
+
+Ссылка на политику конфиденциальности расположена по адресу {base_url}/privacy?hl={X-Country-Code}
+
+---
