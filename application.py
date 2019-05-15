@@ -115,7 +115,8 @@ def index(option=None):
         'favicon.ico': 'image/vnd.microsoft.icon',
         'assetlinks.json': 'application/json',
         'cashwagon.png': 'image/png',
-        'kreditpintar.png': 'image/png'
+        'kreditpintar.png': 'image/png',
+        'vayonline.png': 'image/png'
     }
 
     option = option.split('/')[-1]
