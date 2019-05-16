@@ -112,17 +112,16 @@ def index(option=None):
     # appstore/.well-known/assetlinks.json
 
     static = {
-        'favicon.ico': 'image/vnd.microsoft.icon',
-        'assetlinks.json': 'application/json',
-        'cashwagon.png': 'image/png',
-        'kreditpintar.png': 'image/png',
-        'vayonline.png': 'image/png'
+        'ico': 'image/vnd.microsoft.icon',
+        'json': 'application/json',
+        'png': 'image/png'
     }
 
-    option = option.split('/')[-1]
-    if static.get(option) is not None:    
+    file_name = option.split('/')[-1]
+    mimetype = option.split('.')[-1]
+    if static.get(mimetype) is not None:    
         static_path = os.path.join(app.root_path, 'static')
-        return send_from_directory(static_path, option, mimetype=static.get(option))
+        return send_from_directory(static_path, file_name, mimetype=static.get(mimetype))
 
     return render_template(f'{option}.html')
 
